@@ -4,6 +4,7 @@ import com.caaguirre.api.model.User;
 import com.caaguirre.api.repository.IUserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class UserService {
     private final IUserRepository userRepository;
 
     @Autowired
-    public UserService(IUserRepository userRepository) {
+    public UserService(@Qualifier("postgreSQL") IUserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -31,7 +32,7 @@ public class UserService {
     }
 
     public List<User> getAllUsers() {
-        return userRepository.selectAllStudents();
+        return userRepository.selectAllUsers();
     }
 
 }

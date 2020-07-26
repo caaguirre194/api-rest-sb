@@ -1,6 +1,7 @@
 package com.caaguirre.api.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,6 +19,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 public class User {
 
     @Id
@@ -30,7 +32,6 @@ public class User {
     @Email
     @NotEmpty(message = "Email is required")
     private String email;
-    private Instant created;
     private boolean enabled;
 
 }

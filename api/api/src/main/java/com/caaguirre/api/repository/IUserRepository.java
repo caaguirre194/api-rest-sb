@@ -1,22 +1,48 @@
 package com.caaguirre.api.repository;
 
 import com.caaguirre.api.model.User;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
-@Repository
 public interface IUserRepository {
 
-    Optional<User> findByUsername(String username);
+    /**
+     * find a user by his username
+     * @param username
+     * @return
+     */
+    User findByUsername(String username);
 
-    List<User> selectAllStudents();
+    /**
+     * find a user by his id
+     * @param id
+     * @return
+     */
+    User findById(Long id);
 
-    void deleteUser(Long userId);
+    /**
+     * get all users
+     * @return
+     */
+    List<User> selectAllUsers();
 
-    void createUser(User user);
+    /**
+     * delete user by his id
+     * @param userId
+     * @return
+     */
+    int deleteUser(Long userId);
 
+    /**
+     * create a user
+     * @param user
+     */
+    int createUser(User user);
+
+    /**
+     * update a user
+     * @param user
+     */
     void updateUser(User user);
 
 }
