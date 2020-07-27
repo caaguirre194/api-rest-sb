@@ -24,36 +24,36 @@ public class UserPostgreSQLRepository implements IUserRepository{
     @Override
     public User findByUsername(String username) {
         String sqlQuery = "SELECT id, username, password, email, enabled " +
-                "FROM user WHERE username = ?";
+                "FROM public.user WHERE username = ?";
         return jdbcTemplate.queryForObject(sqlQuery, this::mapRowToUser, username);
     }
 
     @Override
     public User findById(Long id) {
         String sqlQuery = "SELECT id, username, password, email, enabled " +
-                "FROM user where id = ?";
+                "FROM public.user where id = ?";
         return jdbcTemplate.queryForObject(sqlQuery, this::mapRowToUser, id);
     }
 
     @Override
     public List<User> selectAllUsers() {
-        String sqlQuery = "SELECT id, username, password, email, enabled FROM user";
+        String sqlQuery = "SELECT id, username, password, email, enabled FROM public.user";
         return jdbcTemplate.query(sqlQuery, this::mapRowToUser);
     }
 
     @Override
     public int deleteUser(Long userId) {
         String sql = "" +
-                "DELETE FROM user " +
-                "WHERE student_id = ?";
+                "DELETE FROM public.user " +
+                "WHERE id = ?";
         return jdbcTemplate.update(sql, userId);
     }
 
     @Override
     public int createUser(User user) {
         String sql = "" +
-                "INSERT INTO user (" +
-                "id" +
+                "INSERT INTO public.user (" +
+                "id," +
                 " username, " +
                 " password, " +
                 " email, " +
@@ -61,7 +61,7 @@ public class UserPostgreSQLRepository implements IUserRepository{
                 "VALUES (?, ?, ?, ?, ?)";
         return jdbcTemplate.update(
                 sql,
-                user.getUserId(),
+                user.getId(),
                 user.getUsername(),
                 user.getPassword(),
                 user.getEmail(),
@@ -71,19 +71,19 @@ public class UserPostgreSQLRepository implements IUserRepository{
 
     @Override
     public void updateUser(User user) {
-        String sqlQuery = "update user set " +
+        String sqlQuery = "update public.user set " +
                 "username = ?, password = ?, email = ? " +
                 "WHERE id = ?";
         jdbcTemplate.update(sqlQuery
                 , user.getUsername()
                 , user.getPassword()
                 , user.getEmail()
-                , user.getUserId());
+                , user.getId());
     }
 
     private User mapRowToUser(ResultSet resultSet, int rowNum) throws SQLException {
         return User.builder()
-                .userId(resultSet.getLong("id"))
+                .id(resultSet.getLong("id"))
                 .username(resultSet.getString("username"))
                 .password(resultSet.getString("password"))
                 .email(resultSet.getString("email"))

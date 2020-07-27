@@ -1,5 +1,6 @@
 package com.caaguirre.api.service;
 
+import com.caaguirre.api.common.EmailValidator;
 import com.caaguirre.api.model.User;
 import com.caaguirre.api.repository.IUserRepository;
 import lombok.AllArgsConstructor;
@@ -14,9 +15,12 @@ public class UserService {
 
     private final IUserRepository userRepository;
 
+    private final EmailValidator emailValidator;
+
     @Autowired
-    public UserService(@Qualifier("postgreSQL") IUserRepository userRepository) {
+    public UserService(@Qualifier("postgreSQL") IUserRepository userRepository, EmailValidator emailValidator) {
         this.userRepository = userRepository;
+        this.emailValidator = emailValidator;
     }
 
     public void createUser(User user){
@@ -31,7 +35,7 @@ public class UserService {
         userRepository.updateUser(user);
     }
 
-    public List<User> getAllUsers() {
+    public List<User> selectAllUsers() {
         return userRepository.selectAllUsers();
     }
 
