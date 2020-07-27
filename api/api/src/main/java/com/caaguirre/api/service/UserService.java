@@ -3,7 +3,6 @@ package com.caaguirre.api.service;
 import com.caaguirre.api.common.EmailValidator;
 import com.caaguirre.api.model.User;
 import com.caaguirre.api.repository.IUserRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -24,19 +23,19 @@ public class UserService {
     }
 
     public void createUser(User user){
-        userRepository.createUser(user);
+        userRepository.save(user);
     }
 
     public void deleteUser(Long userId){
-        userRepository.deleteUser(userId);
+        userRepository.delete(userId);
     }
 
     public void updateUser(User user){
-        userRepository.updateUser(user);
+        userRepository.update(user);
     }
 
     public List<User> selectAllUsers() {
-        return userRepository.selectAllUsers();
+        return userRepository.findAll();
     }
 
 }

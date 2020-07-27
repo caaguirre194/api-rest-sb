@@ -1,8 +1,10 @@
 package com.caaguirre.api.repository;
 
 import com.caaguirre.api.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IUserRepository {
 
@@ -18,31 +20,31 @@ public interface IUserRepository {
      * @param id
      * @return
      */
-    User findById(Long id);
+    User getOne(Long id);
 
     /**
      * get all users
      * @return
      */
-    List<User> selectAllUsers();
+    List<User> findAll();
 
     /**
      * delete user by his id
      * @param userId
      * @return
      */
-    int deleteUser(Long userId);
+    int delete(Long userId);
 
     /**
      * create a user
      * @param user
      */
-    int createUser(User user);
+    int save(User user);
 
     /**
      * update a user
      * @param user
      */
-    void updateUser(User user);
+    void update(User user);
 
 }
