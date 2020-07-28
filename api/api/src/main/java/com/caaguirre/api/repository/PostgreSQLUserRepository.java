@@ -9,16 +9,15 @@ import org.springframework.stereotype.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 @Qualifier("postgreSQL")
-public class UserPostgreSQLRepository implements IUserRepository {
+public class PostgreSQLUserRepository implements IUserRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public UserPostgreSQLRepository(JdbcTemplate jdbcTemplate) {
+    public PostgreSQLUserRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 

@@ -22,6 +22,10 @@ public class UserService {
         this.emailValidator = emailValidator;
     }
 
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
     public void createUser(User user){
         userRepository.save(user);
     }
