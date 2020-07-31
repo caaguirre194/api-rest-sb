@@ -1,5 +1,6 @@
 package com.caaguirre.api.security;
 
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
